@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `<h1>Hello world!</h1>`
 })
 export class AppComponent {
-  title = 'homes';
+  title = 'proot';
 }
 
-//test test
+//test
