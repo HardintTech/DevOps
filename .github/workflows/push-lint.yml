@@ -1,26 +1,31 @@
-name: Lint Pull Request
+name: Build, Deploy to GitHub Pages and Deploy PR Preview
 
 on:
+  push:
+    branches: [main, master]
   pull_request:
-    branches:
-      - main  # Change this to your main branch name
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: ci-${{ github.ref }}
 
 jobs:
-  lint:
+  build-deploy-and-preview:
+    name: Build, Deploy to GitHub Pages and Deploy PR Preview
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
-
-    - name: Install Dependencies
-      run: npm install  # Change this to the command used to install dependencies (e.g., yarn)
-
-    - name: Run ESLint
-      run: npm run lint  # Change this to the linting command for your specific project
+      - name: Build, Deploy to GitHub Pages and Deploy PR Preview
+        uses: chvmvd/build-deploy-and-preview-action@v1.2.0
+        with:
+          type: vite
 
