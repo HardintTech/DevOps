@@ -3,8 +3,10 @@ name: 'push-lint'
 on: push
 
 jobs:
-  lint-check:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: "git checkout code into runner"
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Run ShellCheck
+        uses: azohra/shell-linter@latest
