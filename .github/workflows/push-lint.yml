@@ -1,0 +1,10 @@
+name: 'push-lint'
+
+on: push
+
+jobs:
+  lint-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "git checkout code into runner"
+      uses: actions/checkout@v3
